@@ -3,7 +3,23 @@
     Autor: Bruno Salmito
     # Pode alterar a vontade
 -->
+<?php
+    require_once('classes/config.php');
+    require_once('classes/db.php');
+    if(isset($_POST['acao'])){
+        $nome = $_POST['nome'];
+        $email = $_POST['email'];
+        $telefone = $_POST['telefone'];
+        if(!$_POST['msg'] == ""){
+            $msg = $_POST['msg'];
+        }else{
+            $msg = "Cliente não digitou mensagem....";
+        }
+        $sql = $pdo->prepare("INSERT INTO `lead` VALUES (null,?,?,?,?)");
+        $sql->execute(array($nome,$email,$telefone,$msg))        
+    }
 
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <!--
