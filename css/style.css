@@ -1,0 +1,372 @@
+/*
+    Arquivo de estilização da landing Page 
+    Autor: Bruno Salmito
+
+*/
+
+
+/* -------------------------------------------------------
+    Reset do navegador e boot css
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+a {
+    text-decoration: none;
+
+}
+
+.center {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2%;
+}
+
+.clear {
+    clear: both;
+}
+
+/* -------------------------------------------
+   Estilização do header
+*/
+header {
+    width: 100%;
+    padding: 5px;
+    background-color: #D6D6D6;
+    padding: 10px 2%;
+
+
+}
+
+header div.logo:nth-of-type(1) {
+    float: left;
+    width: 150px;
+    height: 60px;
+    background-image: url('../img/logo1.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+header div.logo:nth-of-type(2) {
+    float: right;
+    width: 150px;
+    height: 60px;
+    background-image: url('../img/logo2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* -------------------------------------------
+   Estilização da section banner
+*/
+section.banner {
+    width: 100%;
+    padding: 0 2%;
+    text-align: center;
+}
+
+section.banner .bg_main {
+    width: 100%;
+    height: 550px;
+    /*height: calc(100vh - 80px);*/
+    background-image: url('../img/bg-form.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+section.banner .form-container {
+    float: right;
+    width: 400px;
+    height: 100%;
+    text-align: center;
+    padding: 10px 0;
+}
+
+section.banner .form-container h2 {
+    text-transform: uppercase;
+    background-color: rgba(234, 236, 239, 0.562);
+    padding: 15px;
+    color: rgb(48, 47, 47);
+    font-size: 18px;
+}
+
+section.banner .form-container form {
+    background-color: rgba(201, 190, 190, 0.589);
+    padding: 15px;
+}
+
+section.banner .form-container form .input_container {
+    width: 100%;
+    margin: 18px 0;
+    text-align: center;
+}
+
+section.banner .form-container form .input_container label {
+    display: block;
+    color: #3a3636;
+    text-align: left;
+    font-size: 16px;
+}
+
+section.banner .form-container form .input_container input {
+    width: 100%;
+    height: 35px;
+    border: none;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+    padding-left: 5px;
+    line-height: 35px;
+    border-radius: 3px;
+    background-color: rgb(235, 231, 231);
+}
+
+section.banner .form-container form .input_container textarea {
+    width: 100%;
+    height: 70px;
+    resize: none;
+    margin-top: 5px;
+    background-color: rgb(235, 231, 231);
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+
+section.banner .form-container form .input_container input[type=submit] {
+    display: inline-block;
+    width: 70%;
+    height: 40px;
+    background-color: rgb(33, 84, 126);
+    margin: 0 0;
+    outline: none;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: white;
+    border-radius: 4px;
+}
+
+section.banner .form-container form .input_container input[type=submit]:hover {
+    background-color: rgb(14, 76, 128);
+}
+
+section.banner .form-container form .input_container input:focus,
+section.banner .form-container form .input_container textarea:focus {
+    background-color: azure;
+    outline: none;
+}
+
+section.banner .arrow {
+    width: 48px;
+    height: 48px;
+    background-color: rgb(14, 76, 128);
+    border-radius: 50%;
+    position: relative;
+    bottom: 24px;
+    left: 50%;
+    margin-left: -24px;
+    animation-name: arrow;
+    animation-duration: 3s;
+    animation-timing-function: ease-in-out;
+    border: 1px solid white;
+}
+
+section.banner .arrow i {
+    line-height: 48px;
+    font-size: 24px;
+    color: white;
+}
+
+/* -------------------------------------------
+   Estilização da section chamada
+*/
+section.chamada {
+    width: 100%;
+    text-align: center;
+    margin-top: -50px;
+    padding: 0 2%;
+}
+
+section.chamada .center {
+    background-color: #29526d;
+    padding: 40px 0;
+}
+
+section.chamada h2,
+section.chamada h3 {
+    /*color: rgb(48, 47, 47);*/
+    color: rgb(216, 208, 208);
+    margin-top: 10px;
+}
+
+/* -------------------------------------------
+   Estilização da section mosaico
+*/
+section.mosaico {
+    width: 100%;
+    padding: 0 2%;
+}
+
+section.mosaico>.center {
+    padding: 0;
+}
+
+
+section.mosaico .wraper_mosaico {
+    display: flex;
+    background-color: #4683ab;
+    margin: 2px 0;
+}
+
+section.mosaico .wraper_mosaico .item_1 {
+    width: 60%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: 2s;
+}
+
+section.mosaico .wraper_mosaico .item_2 {
+    width: 40%;
+    padding: 50px;
+    text-align: center;
+    word-break: keep-all;
+    color: rgb(216, 212, 212);
+}
+
+/* -------------------------------------------
+   Estilização do footer
+*/
+footer {
+    width: 100%;
+    color: rgb(216, 208, 208);
+    text-align: center;
+    padding: 10px 0 0;
+    margin-top: -10px;
+}
+
+footer .center {
+    background-color: #d6d6d6;
+}
+
+footer img {
+    margin: 10px 0 0;
+    width: 150px;
+    padding: 10px;
+}
+
+/* -------------------------------------------
+   Estilização da mensagem de sucesso
+*/
+.sucesso {
+    width: 200px;
+    height: 20px;
+    text-align: center;
+    position: absolute;
+    right: 30px;
+    top: 80px;
+    z-index: 1;
+    background-color: green;
+    animation-name: modal;
+    animation-duration: 2s;
+    border-radius: 6px;
+    display: none;
+}
+
+.sucesso p {
+    display: inline-block;
+    height: 100%;
+    color: white;
+}
+
+/* -------------------------------------------
+   Animações
+*/
+@keyframes arrow {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes modal {
+    0% {
+        right: -220px;
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+
+    }
+}
+
+/* -------------------------------------------
+   Estilização do responsivo
+*/
+@media screen and (max-width: 1000px) {
+    section.banner {
+        padding: 0;
+    }
+
+    section.chamada {
+        padding: 0;
+    }
+
+    section.mosaico {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    section.mosaico .wraper_mosaico {
+        display: inline-block;
+    }
+
+    section.mosaico .wraper_mosaico .item_1 {
+        width: 100%;
+        padding-top: 70%;
+    }
+
+    section.mosaico .wraper_mosaico .item_2 {
+        width: 100%;
+    }
+
+    section.banner .form-container {
+        float: none;
+        display: inline-block;
+        width: 90%;
+        max-width: 400px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    header {
+        text-align: center;
+    }
+
+    div.logo {
+        float: none !important;
+        display: inline-block;
+    }
+
+    div.logo:nth-of-type(2) {
+        display: none;
+    }
+}
