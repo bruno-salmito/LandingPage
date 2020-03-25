@@ -59,6 +59,18 @@ header {
 }
 ```
 
+* config.ph -> 'classes/config.php', arquivo responsável pela conecxão com o banco de dados
+
+```
+<?php
+    define('HOST','localhost'); #servidor do banco de dados (alterar onde esta localhost)
+    define('DB','landing');     #nome do banco de dados
+    define('USER','root');      #usuário do banco de dados
+    define('PASS','');          #senha para acesso ao banco de dados
+    #define('OPTIONS', 'array(PDO::MYSQL_ATTR_INIT_COMMAND => '."SET NAMES utf8".')'); 
+    #array(PDO::MYSQL_ATTR_INIT_COMMAND => SET NAMES utf8)
+?>
+```
 * JS -> *js/script.js*, arquivo contendo os principais scripts JavaScript do site (Falta implantar)
 
 ```
@@ -68,9 +80,11 @@ script.js
 
 ## Próximas implatações
 
-* Salvar dados do formulário no banco de dados.
+* Salvar dados do formulário no banco de dados (Executado).
 * Implantar PHP Mailer.
+* Implatar máscara no formulário.
 * Painel administrativo com dashboard.
+* Gal. de imagens.
 * Real chat.
 
 
@@ -81,6 +95,8 @@ Basta clonar ou fazer o download do repositório e mexer a vontade.
 
 ## Histórico de lançamentos
 
+* 0.0.2
+    * MUDANÇA: Adicionado conexão com o banco de dados (consultar arquivo config.php/db.php)
 * 0.0.2
     * MUDANÇA: Atualização do css (código do módulo permanece inalterado)
 * 0.0.1
