@@ -75,43 +75,77 @@ header {
 **Obs: Alterar os campos necessarios indicados no arquivo
 
 ```
+/**
+ * Classe que controla o envio de e-mails 
+ * Autor: Bruno Salmito
+ * Versão 1.0
+ */
 
 	class Email
 	{
-		public $erro = "Não foi possível enviar e-mail";
+
 		private $mailer;
 
-		public function __construct($nome,$email,$telefone,$mensagem){
-			
-			
-			
-			$mailer = new PHPMailer;
+		public function __construct($host,$username,$password,$name){
+						
+			$this->mailer = new PHPMailer;
 
-			$mailer->isSMTP();                                      	// Set mailer to use SMTP
-			$mailer->Host = 'COLOCAR SEU HOST AQUI';  				  	// Specify main and backup SMTP servers
-			$mailer->SMTPAuth = true;                               	// Enable SMTP authentication
-			$mailer->Username = 'COLOCAR SEU USER NAME DO EMAIL';       // SMTP username
-			$mailer->Password = 'SENHA DO EMAIL';                       // SMTP password
-			$mailer->SMTPSecure = 'ssl';                            	// Enable TLS encryption, `ssl` also accepted
-			$mailer->Port = 465;                                    	// TCP port to connect to
+			$this->mailer->isSMTP();                                      	// Set mailer to use SMTP
+			$this->mailer->Host = $host;  				  					// Specify main and backup SMTP servers
+			$this->mailer->SMTPAuth = true;                               	// Enable SMTP authentication
+			$this->mailer->Username = $username;       						// SMTP username
+			$this->mailer->Password = $password;                       		// SMTP password
+			$this->mailer->SMTPSecure = 'ssl';                            	// Enable TLS encryption, `ssl` also accepted
+			$this->mailer->Port = 465;                                    	// TCP port to connect to
 
-			$mailer->setFrom('COLOCAR O EMAIL DO USERNAME','NOME');
-			$mailer->addAddress('ENDEREÇO DE DESTINO','NOME');
+			$this->mailer->setFrom($username,$name);
 			
-			$mailer->isHTML(true);                                  	// Set email format to HTML
+			$this->mailer->isHTML(true);                                  	// Set email format to HTML
 			
-			$mailer->CharSet = 'UTF-8';
-			$mailer->Subject = 'Você recebeu um cadastro';
-			$mailer->Body    = "O cliente: $nome <br>E-mail: $email<br>Telefone: $telefone<br>Mensagem:<br>$mensagem";
-			$mailer->AltBody = 'Este é um e-mail sem html';
-		
-			if($mailer->send()){
+			$this->mailer->CharSet = 'UTF-8';
+
+		}//fim do método construct
+
+
+
+		public function setEmail($email,$name){
+			/* Função para adicionar o endereço de e-mail */
+			$this->mailer->addAddress($email,$name);
+		}
+
+
+		public function formatEmail($info){
+			/* Função que vai formatar o e-mail a ser enviado */
+			$this->mailer->Subject = $info['assunto'];
+			$this->mailer->Body    = $info['corpo'];
+			$this->mailer->AltBody = strip_tags($info['corpo']);
+		}
+
+
+		public function sendEmail(){
+			/* Função que irá enviar o e-mail aos destinatários */
+			if($this->mailer->send()){
+				//Enviado com sucesso
 				return true;
 			}else{
-				echo "<script>alert($erro);</script>";
+				//Falha ao enviar
+				return false;
 			}
 		}
-	}
+
+
+	}//fim da classe
+```
+* Index -> *index.php*, para que o envio de e-mail funcione, você precisa adicionar neste arquivo as informações
+da sua hospedagem, procure a linha abaixo no arquivo e modifique.
+
+```
+            $mail = new Email('HOST DA SUA HOSPEDAGEM',
+            'USERNAME DA SUA HOSPEDAGEM',
+            'SENHA DA SUA HOSPEDAGEM',
+            'SEU NOME');
+
+			$mail->setEmail('SEU E-MAIL DE DESTINO AQUI','Landing Page System');
 ```
 
 * JS -> *js/script.js*, arquivo contendo os principais scripts JavaScript do site (Falta implantar)
@@ -137,8 +171,11 @@ Basta clonar ou fazer o download do repositório e mexer a vontade.
 
 
 ## Histórico de lançamentos
-
-* 0.0.2
+* 0.0.4
+	* MUDANÇA: Adicionado novas funcionalidades no envio do e-mail.
+	* Adicionado funções especificas na classe Email, agora basta ao instanciar o objeto
+	passar os paramêtros de conexão.
+* 0.0.3
     * MUDANÇA: Adicionado PHPMailer para envio do formulário para e-mail.
     * Fazer as alterações de host, usuário, porta e e-mail de destino na `classe/Email.php`;
 * 0.0.2

@@ -8,14 +8,39 @@
 
     //Verifica se o formulário foi preenchido e envia por e-mail
     if(isset($_POST['acao'])){
-        $mensagem = $_POST['msg'];
-        $nome = $_POST['nome'];
-        $email = $_POST['email'];
-        $telefone = $_POST['telefone'];
-        
-        #Envia o email
-        new Email($nome,$email,$telefone,$mensagem);
-    }
+        if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+            
+            $mail = new Email('HOST DA SUA HOSPEDAGEM',
+            'USERNAME DA SUA HOSPEDAGEM',
+            'SENHA DA SUA HOSPEDAGEM',
+            'SEU NOME');
+
+            $assunto = 'Novo Cadastro em nossa Landing Page!';
+            $corpo = '';
+
+            foreach ($_POST as $key => $value) {
+                $corpo .= ucfirst($key).' : '.$value;
+                $corpo .='<br>';
+            }
+
+            $info = array('assunto'=>$assunto,'corpo'=>$corpo);
+
+            $mail->setEmail('SEU E-MAIL DE DESTINO AQUI','Landing Page System');
+            $mail->formatEmail($info);
+
+            if($mail->sendEmail()){
+                //Email Enviado
+                echo '<script>alert("Cadastro enviado com sucesso!");</script>';
+            }else{
+                //Não enviou
+                echo '<script>alert("Algo deu errado!");</script>';
+            }
+
+        }else{
+            echo '<script>alert("Digite um e-mail");</script>';
+        }
+
+    }//fim do ifpost
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
