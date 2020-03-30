@@ -4,21 +4,18 @@
     # Pode alterar a vontade
 -->
 <?php
-    require_once('classes/config.php');
-    require_once('classes/db.php');
+    require_once('config.php');
+
+    //Verifica se o formulário foi preenchido e envia por e-mail
     if(isset($_POST['acao'])){
+        $mensagem = $_POST['msg'];
         $nome = $_POST['nome'];
         $email = $_POST['email'];
         $telefone = $_POST['telefone'];
-        if(!$_POST['msg'] == ""){
-            $msg = $_POST['msg'];
-        }else{
-            $msg = "Cliente não digitou mensagem....";
-        }
-        $sql = $pdo->prepare("INSERT INTO `lead` VALUES (null,?,?,?,?)");
-        $sql->execute(array($nome,$email,$telefone,$msg))        
+        
+        #Envia o email
+        new Email($nome,$email,$telefone,$mensagem);
     }
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

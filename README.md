@@ -1,7 +1,6 @@
 # Projeto - 01
-> Landing Page desenvolvida no curso da Danki Code (Fullstack).
-> Projeto inicial desenvolvido segundo as informações do curso
-> Versão: 0.1
+> Landing Page - Use a vontade.
+> Versão: 0.2
 
 [![NPM Version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
@@ -59,34 +58,60 @@ header {
 }
 ```
 
-* config.php -> *classes/config.php*, arquivo que contém os dados necessários para conectar ao banco.
+* config.php -> *config.php*, arquivo que contém todas as configurações do site.
+** Foi implantado neste arquivo a função para carregar todas as classes de forma automática.
 
 ```
-<?php
-    define('HOST','localhost'); #servidor do banco de dados (alterar onde esta localhost)
-    define('DB','landing');     #nome do banco de dados
-    define('USER','root');      #usuário do banco de dados
-    define('PASS','');          #senha para acesso ao banco de dados
-    #define('OPTIONS', 'array(PDO::MYSQL_ATTR_INIT_COMMAND => '."SET NAMES utf8".')'); 
-    #array(PDO::MYSQL_ATTR_INIT_COMMAND => SET NAMES utf8)
-?>
+ $autoload = function($classe){
+     if($classe == 'Email'){
+         include_once('classes/phpmailer/PHPMailerAutoload.php');
+     }
+     include('classes/'.$classe.'.php');
+ }; //Final da variavel autoload
+ spl_autoload_register($autoload);
 ```
 
-* db.php -> *classes/db.php*, arquivo responsável pela conecxão com o banco de dados.
+* Email.php -> *classes/Email.php*, classe que envia o e-mail.
+**Obs: Alterar os campos necessarios indicados no arquivo
 
 ```
-    require_once('config.php');
-    # Tenta conectar ao banco de dados 
-    try {
-        $pdo = new PDO('mysql:host='.HOST.';dbname='.DB,USER,PASS,
-        array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-        $pdo->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-    } catch (Exception $e) {
-        #caso nao conecte ele mostra o erro
-        echo 'Erro ao conectar ao banco de dados';
-    }
+	class Email
+	{
+		public $erro = "Não foi possível enviar e-mail";
+		private $mailer;
 
+		public function __construct($nome,$email,$telefone,$mensagem){
+			
+			
+			
+			$mailer = new PHPMailer;
+
+			$mailer->isSMTP();                                      	// Set mailer to use SMTP
+			$mailer->Host = 'COLOCAR SEU HOST AQUI';  				  	// Specify main and backup SMTP servers
+			$mailer->SMTPAuth = true;                               	// Enable SMTP authentication
+			$mailer->Username = 'COLOCAR SEU USER NAME DO EMAIL';       // SMTP username
+			$mailer->Password = 'SENHA DO EMAIL';                       // SMTP password
+			$mailer->SMTPSecure = 'ssl';                            	// Enable TLS encryption, `ssl` also accepted
+			$mailer->Port = 465;                                    	// TCP port to connect to
+
+			$mailer->setFrom('COLOCAR O EMAIL DO USERNAME','NOME');
+			$mailer->addAddress('ENDEREÇO DE DESTINO','NOME');
+			
+			$mailer->isHTML(true);                                  	// Set email format to HTML
+			
+			$mailer->CharSet = 'UTF-8';
+			$mailer->Subject = 'Você recebeu um cadastro';
+			$mailer->Body    = "O cliente: $nome <br>E-mail: $email<br>Telefone: $telefone<br>Mensagem:<br>$mensagem";
+			$mailer->AltBody = 'Este é um e-mail sem html';
+		
+			if($mailer->send()){
+				return true;
+			}else{
+				echo "<script>alert($erro);</script>";
+			}
+		}
+	}
 ```
 
 * JS -> *js/script.js*, arquivo contendo os principais scripts JavaScript do site (Falta implantar)
@@ -98,8 +123,8 @@ script.js
 
 ## Próximas implatações
 
-* Salvar dados do formulário no banco de dados (Executado).
-* Implantar PHP Mailer.
+* Salvar dados do formulário no banco de dados.
+* Implantar PHP Mailer (Funcionando).
 * Implatar máscara no formulário.
 * Painel administrativo com dashboard.
 * Gal. de imagens.
@@ -114,7 +139,8 @@ Basta clonar ou fazer o download do repositório e mexer a vontade.
 ## Histórico de lançamentos
 
 * 0.0.2
-    * MUDANÇA: Adicionado conexão com o banco de dados (consultar arquivo config.php/db.php)
+    * MUDANÇA: Adicionado PHPMailer para envio do formulário para e-mail.
+    * Fazer as alterações de host, usuário, porta e e-mail de destino na `classe/Email.php`;
 * 0.0.2
     * MUDANÇA: Atualização do css (código do módulo permanece inalterado)
 * 0.0.1
@@ -141,4 +167,4 @@ Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
 [npm-downloads]: https://img.shields.io/npm/dm/datadog-metrics.svg?style=flat-square
 [travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
 [travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
-[wiki]: https://github.com/seunome/seuprojeto/wiki
+[wiki]: https://github.com/bruno-salmito/LandingPage/wiki
