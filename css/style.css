@@ -278,6 +278,7 @@ section.chamada h3 {
 section.mosaico {
     width: 100%;
     padding: 0 2%;
+
 }
 
 section.mosaico>.center {
@@ -289,6 +290,7 @@ section.mosaico .wraper_mosaico {
     display: flex;
     background-color: #4683ab;
     margin: 2px 0;
+
 }
 
 section.mosaico .wraper_mosaico .item_1 {
@@ -320,6 +322,7 @@ footer {
 
 footer .center {
     background-color: #d6d6d6;
+
 }
 
 footer img {
@@ -430,4 +433,23 @@ footer img {
     div.logo:nth-of-type(2) {
         display: none;
     }
+}
+
+/* Animação */
+[data-anime] {
+    opacity: 0;
+    transition: .5s;
+}
+
+[data-anime="left"] {
+    transform: translate3d(-50px, 0, 0);
+}
+
+[data-anime="right"] {
+    transform: translate3d(50px, 0, 0);
+}
+
+[data-anime].animate {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
 }

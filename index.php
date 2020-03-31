@@ -107,7 +107,7 @@
     -->
     <section class="mosaico">
         <div class="center">
-            <div class="wraper_mosaico">
+            <div class="wraper_mosaico" data-anime="left">
                 <div class="item_1" style="background-image: url('img/mosaico-1.jpeg'); order: 2;"></div>
                 <div class="item_2">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, pariatur quia qui dolores
@@ -116,7 +116,7 @@
                 </div>
             </div>
             <!--wraper-mosaico-->
-            <div class="wraper_mosaico">
+            <div class="wraper_mosaico" data-anime="right">
                 <div class="item_1" style="background-image: url('img/mosaico4.jpg');"></div>
                 <div class="item_2">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, pariatur quia qui dolores
@@ -125,7 +125,7 @@
                 </div>
             </div>
             <!--wraper-mosaico-->
-            <div class="wraper_mosaico">
+            <div class="wraper_mosaico" data-anime="left">
                 <div class="item_1" style="background-image: url('img/mosaico3.jpg'); order: 2;"></div>
                 <div class="item_2">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, pariatur quia qui dolores
@@ -134,7 +134,7 @@
                 </div>
             </div>
             <!--wraper-mosaico-->
-            <div class="wraper_mosaico">
+            <div class="wraper_mosaico" data-anime="right">
                 <div class="item_1" style="background-image: url('img/mosaico2.jpg');"></div>
                 <div class="item_2">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, pariatur quia qui dolores
@@ -155,12 +155,12 @@
         <p>Enviado com sucesso</p>
     </div>
 
-    <footer>
+    <footer >
         <div class="center">
             <img src="img/logo1.png" alt="Construções inteligentes">
         </div>
     </footer>
-
+    <script src="js/animate.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/formulario.js"></script>
 </body>
