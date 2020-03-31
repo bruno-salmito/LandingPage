@@ -171,6 +171,7 @@ Basta clonar ou fazer o download do repositório e mexer a vontade.
 
 
 ## Histórico de lançamentos
+* 0.0.5 Adicionado ajax para controlar o envio de e-mails, os arquivos *js/formulario.js* e *ajax/formulario.php* foram adicionados. 
 * 0.0.4
 	* MUDANÇA: Adicionado novas funcionalidades no envio do e-mail.
 	* Adicionado funções especificas na classe Email, agora basta ao instanciar o objeto

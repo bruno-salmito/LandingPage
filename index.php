@@ -3,45 +3,6 @@
     Autor: Bruno Salmito
     # Pode alterar a vontade
 -->
-<?php
-    require_once('config.php');
-
-    //Verifica se o formulário foi preenchido e envia por e-mail
-    if(isset($_POST['acao'])){
-        if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
-            
-            $mail = new Email('HOST DA SUA HOSPEDAGEM',
-            'USERNAME DA SUA HOSPEDAGEM',
-            'SENHA DA SUA HOSPEDAGEM',
-            'SEU NOME');
-
-            $assunto = 'Novo Cadastro em nossa Landing Page!';
-            $corpo = '';
-
-            foreach ($_POST as $key => $value) {
-                $corpo .= ucfirst($key).' : '.$value;
-                $corpo .='<br>';
-            }
-
-            $info = array('assunto'=>$assunto,'corpo'=>$corpo);
-
-            $mail->setEmail('SEU E-MAIL DE DESTINO AQUI','Landing Page System');
-            $mail->formatEmail($info);
-
-            if($mail->sendEmail()){
-                //Email Enviado
-                echo '<script>alert("Cadastro enviado com sucesso!");</script>';
-            }else{
-                //Não enviou
-                echo '<script>alert("Algo deu errado!");</script>';
-            }
-
-        }else{
-            echo '<script>alert("Digite um e-mail");</script>';
-        }
-
-    }//fim do ifpost
-?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <!--
@@ -77,12 +38,13 @@
         </div>
         <!--center-->
     </header>
-    <!-- 
+ 
+    <div class="msgSucesso">Enviado com sucesso...</div>   
+    <div class="msgErro">Algo deu Errado</div>  
+    <div class="loader">
+        <img src="img/loader.gif" alt="">
+    </div>
 
-    adicionar php mailer e salvar no banco de dados
-        #ection que contém o bg principal do site e o formulário para converter
-        leads
-    -->
     <section class="banner">
         <div class="center bg_main">
             <div class="form-container">
@@ -90,22 +52,22 @@
                 <form method="post" autocomplete="off">
                     <div class="input_container">
                         <label for="nome">Nome</label>
-                        <input type="text" name="nome" required>
+                        <input required type="text" name="nome">
                     </div>
                     <!--input_container-->
                     <div class="input_container">
                         <label for="email">E-Mail</label>
-                        <input type="email" name="email" required>
+                        <input required type="email" name="email">
                     </div>
                     <!--input_container-->
                     <div class="input_container">
                         <label for="telefone">Telefone</label>
-                        <input type="text" name="telefone" required>
+                        <input required type="text" name="telefone">
                     </div>
                     <!--input_container-->
                     <div class="input_container">
                         <label for="msg">Mensagem</label>
-                        <textarea name="msg"></textarea>
+                        <textarea required name="msg"></textarea>
                     </div>
                     <!--input_container-->
                     <div class="input_container">
@@ -199,6 +161,8 @@
         </div>
     </footer>
 
+    <script src="js/jquery.js"></script>
+    <script src="js/formulario.js"></script>
 </body>
 
 </html>
